@@ -1,23 +1,23 @@
-# Stock Ticker Analysis Application
+# 📈 Stock Ticker Analysis Application
 This application is designed to provide a comprehensive analysis of a given stock ticker. The workflow involves checking the current price of the ticker, searching for relevant articles, filtering for the most relevant articles, and generating a summary report with sentiment analysis. The application is built using FastAPI and Ngrok to run and expose the API endpoint.
 
-## Table of Contents
-- [Stock Ticker Analysis Application](#stock-ticker-analysis-application)
-  - [Table of Contents](#table-of-contents)
-  - [Installation](#installation)
+## 🌟 Table of Contents
+- [📈 Stock Ticker Analysis Application](#-stock-ticker-analysis-application)
+  - [🌟 Table of Contents](#-table-of-contents)
+  - [🚀 Installation](#-installation)
     - [LLM API](#llm-api)
     - [Master Service](#master-service)
     - [Frontend](#frontend)
-  - [Architecture](#architecture)
-  - [API Services](#api-services)
+  - [🛠️ Architecture](#️-architecture)
+  - [🔍 API Services](#-api-services)
     - [LLM Service](#llm-service)
       - [Usage](#usage)
     - [Analysis/Master Service](#analysismaster-service)
       - [Usage](#usage-1)
-  - [Workflow](#workflow)
-  - [License](#license)
+  - [⚙️ Workflow](#️-workflow)
+  - [📃 License](#-license)
 
-## Installation
+## 🚀 Installation
 ### LLM API
 This is a self hosted LLM model locally using Ollama. The model I will be using is llama3
 > **Prerequisite**: *[Ollama](https://ollama.com/) installed on your machine*
@@ -90,7 +90,7 @@ Step 2: Run scripts to start the fastapi server:
 ./script.bat
 ```
 
-## Architecture
+## 🛠️ Architecture
 1. **Price Agent**: Use Twelve API to retrieve the current stock price
 2. **Search**: Search for relevant articles for analysis
 3. **Filter Agent**: Filter the article by score based on search results
@@ -98,7 +98,7 @@ Step 2: Run scripts to start the fastapi server:
 
    <img src="/documents/architecture.png"/>
 
-## API Services
+## 🔍 API Services
 ### LLM Service
 The Text Analysis API allows users to send a text message and receive a generated analysis based on the llama3 model from Ollama.
 #### Usage
@@ -132,7 +132,7 @@ data = response.json()
 print(data)
 ```
 
-## Workflow
+## ⚙️ Workflow
 1. User Input:
     * The user provides a stock ticker.
 2. Price Agent:
@@ -149,5 +149,5 @@ If the ticker does not exist, the application returns an error and ends the proc
    * The most relevant article is then passed into the LLM again to write a summary report and sentiment analysis.
    * The summary report is returned to the user.
 
-## License
+## 📃 License
 This project is licensed under the MIT License.
