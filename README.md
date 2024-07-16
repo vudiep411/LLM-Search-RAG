@@ -1,6 +1,8 @@
 # Stock Ticker Analysis Application
 This application is designed to provide a comprehensive analysis of a given stock ticker. The workflow involves checking the current price of the ticker, searching for relevant articles, filtering for the most relevant articles, and generating a summary report with sentiment analysis. The application is built using FastAPI and Ngrok to run and expose the API endpoint.
 
+https://github.com/user-attachments/assets/c13e3b4d-93fe-477e-9d77-06d78b7fc129
+
 ## Table of Contents
 - [Stock Ticker Analysis Application](#stock-ticker-analysis-application)
   - [Table of Contents](#table-of-contents)
