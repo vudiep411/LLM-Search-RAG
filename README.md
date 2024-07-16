@@ -8,8 +8,12 @@ This application is designed to provide a comprehensive analysis of a given stoc
     - [LLM API](#llm-api)
     - [Master Service](#master-service)
     - [Frontend](#frontend)
-  - [Architechture](#architechture)
-  - [API Endpoint](#api-endpoint)
+  - [Architecture](#architecture)
+  - [API Services](#api-services)
+    - [LLM Service](#llm-service)
+      - [Usage](#usage)
+    - [Analysis/Master Service](#analysismaster-service)
+      - [Usage](#usage-1)
   - [Workflow](#workflow)
   - [License](#license)
 
@@ -17,7 +21,9 @@ This application is designed to provide a comprehensive analysis of a given stoc
 ### LLM API
 This is a self hosted LLM model locally using Ollama. The model I will be using is llama3
 > **Prerequisite**: *[Ollama](https://ollama.com/) installed on your machine*
-
+```
+ollama run llama3
+```
 Step 1: Install dependencies
 ```
 cd llm_service
@@ -51,7 +57,7 @@ LLM_SERVICE_URL=http://127.0.0.1:8001
 > 
 Step 1: Install dependencies
 ```
-cd llm_service
+cd master_agent
 pip install -r requirements.txt
 ```
 Step 2: Run scripts to start the fastapi server:
@@ -84,7 +90,7 @@ Step 2: Run scripts to start the fastapi server:
 ./script.bat
 ```
 
-## Architechture
+## Architecture
 1. **Price Agent**: Use Twelve API to retrieve the current stock price
 2. **Search**: Search for relevant articles for analysis
 3. **Filter Agent**: Filter the article by score based on search results
@@ -92,8 +98,39 @@ Step 2: Run scripts to start the fastapi server:
 
    <img src="/documents/architecture.png"/>
 
-## API Endpoint
-...
+## API Services
+### LLM Service
+The Text Analysis API allows users to send a text message and receive a generated analysis based on the llama3 model from Ollama.
+#### Usage
+```bash
+curl -X POST "http://127.0.0.1:8001/generate" -H "Content-Type: application/json" -d '{"content": "Analyze this text"}'
+```
+```python
+import requests
+url = "http://127.0.0.1:8001/generate"
+res = requests.post(url, json={"content": "Hi, how are you today?"})
+```
+### Analysis/Master Service
+Run the workflow to retrieve the stock analysis utilizing the llama3 service and RAG technique
+
+#### Usage
+```bash
+curl -X 'GET' \
+  'http://example.com/ticker?ticker=AAPL' \
+  -H 'accept: application/json'
+```
+```python
+import requests
+
+url = 'http://example.com/ticker'
+params = {'ticker': 'AAPL'}
+headers = {'accept': 'application/json'}
+
+response = requests.get(url, params=params, headers=headers)
+data = response.json()
+
+print(data)
+```
 
 ## Workflow
 1. User Input:
@@ -106,7 +143,7 @@ If the ticker does not exist, the application returns an error and ends the proc
     * If the ticker exists, the application searches for articles and sources related to the stock ticker.
 
 4. Article Filtering:
-   * The articles are passed into a language model (LLM) to filter for the most relevant article.
+   * The articles are filtered based on the score from Tavily search tool
   
 5. Summary Report:
    * The most relevant article is then passed into the LLM again to write a summary report and sentiment analysis.
