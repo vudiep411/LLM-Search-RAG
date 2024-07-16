@@ -1,0 +1,1 @@
+uvicorn ollama:app --reload

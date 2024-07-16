@@ -1,6 +1,7 @@
 from tavily import TavilyClient
 import os
 from dotenv import load_dotenv
+import datetime
 
 load_dotenv()
 
@@ -11,8 +12,8 @@ class SearchAgent:
         pass
 
     def search(self, ticker):
-        query = f"Stock analysis for {ticker}"
-        results = tavily_client.search(query=query, topic="news", max_results=10, include_images=True)
+        query = f"Most recent stock analysis for {ticker} price and sentiment."
+        results = tavily_client.search(query=query, topic="news", max_results=15, include_images=True)
         sources = results["results"]
         return sources
     
