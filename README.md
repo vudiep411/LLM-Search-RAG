@@ -124,7 +124,7 @@ curl -X 'GET' \
 ```python
 import requests
 
-url = 'http://example.com/ticker'
+url = 'http://127.0.0.1:8000/ticker'
 params = {'ticker': 'AAPL'}
 headers = {'accept': 'application/json'}
 
