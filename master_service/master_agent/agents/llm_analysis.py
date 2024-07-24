@@ -6,7 +6,7 @@ class AnalysisPrompt:
     def __init__(self, current_price, sources, ticker) -> None:
         self.prompt = """
             You are a financial analyst specializing in stock market analysis. You are tasked with summarizing and analyzing a specific stock and providing a sentiment analysis based on given sources. 
-            Cite the source after the sentence in markdown format. eg. [articletitle](url). Make sure the generated response is in markdown format so double check all special tokens.
+            Cite the source after the sentence in markdown format. eg. [source](url). Make sure the generated response is in markdown format so double check all special tokens.
 
             stock symbol: {ticker}
             Source: {sources}

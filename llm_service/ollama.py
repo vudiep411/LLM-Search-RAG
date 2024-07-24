@@ -8,7 +8,7 @@ install Ollama on your local machine and pull the model you want
 to use. visit https://ollama.com/
 """
 
-llm = Ollama(model="llama3")
+llm = Ollama(model="llama3.1")
 
 app = FastAPI()
 
