@@ -4,7 +4,7 @@ class FilterAgent:
 
     def filter_source(self, ticker, sources):
         sources.sort(key=lambda x: x["score"], reverse=True)
-        return [source["url"] for source in sources[:6]]
+        return [{"url": source["url"], "content": source["content"] }for source in sources[:6]]
 
     def run(self, data):
         filtered_source = self.filter_source(data["ticker"], data["sources"])
